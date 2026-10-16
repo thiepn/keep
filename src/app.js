@@ -2,6 +2,7 @@ import {
   DEFAULT_PREFERENCES,DISTRACTION_REASONS,loadPreferences,savePreferences,
   newFocusState,tickFocus,pauseFocus,recordInterruption,formatClock,STORAGE_KEY
 } from './discipline.js';
+import {previewKeepB3} from './compat/keepB3Preview.js';
 
 const root=document.getElementById('main');
 const buttons=[...document.querySelectorAll('[data-page]')];
@@ -57,7 +58,13 @@ function render() {
   else if(page==='knowledge')root.innerHTML=`<div class="eyebrow">KNOWLEDGE · SOURCE AUTHORITY</div><h1>Knowledge workspace</h1>
     <p>KEEP's earlier B3 knowledge source has not been imported into this new repository. No vault records have been migrated or recreated.</p>
     <section class="panel"><h2>Continue in native Hub Knowledge</h2><p>Hub has its own original note IDs, WikiLinks and linked tasks. Those are not copies of KEEP B3.</p>
-    ${ownerLink('https://thiepn.dev/home/knowledge/','Open Hub Knowledge')}</section>`;
+    ${ownerLink('https://thiepn.dev/home/knowledge/','Open Hub Knowledge')}</section>
+    <section class="panel"><h2>Inspect a KEEP B3 archive safely</h2>
+      <p>This is a read-only format check, not an importer. The original KEEP B3 schema and encryption engine are not available in this repository.</p>
+      <label for="b3-preview-file">Choose local B3 archive or manifest</label>
+      <input id="b3-preview-file" data-b3-preview type="file" accept=".json,.zip,.keep,.backup" aria-describedby="b3-result">
+      <p id="b3-result" role="status">No file selected. Nothing has been imported.</p>
+    </section>`;
   else root.innerHTML=`<div class="eyebrow">LOCAL PREFERENCES</div><h1>Your boundaries</h1>
     <p class="intro">Only these non-sensitive choices are saved in this browser; there is no account sync, journal or second habit history.</p>
     <form id="settings-form" class="panel">
@@ -96,6 +103,17 @@ document.addEventListener('click',event=>{
  }
 });
 root.addEventListener('input',event=>{if(event.target.id==='intention')intention=event.target.value.slice(0,160)});
+root.addEventListener('change',async event=>{
+  const input=event.target;
+  if(!(input instanceof HTMLInputElement)||!input.matches('[data-b3-preview]')||!input.files?.[0])return;
+  const file=input.files[0],status=root.querySelector('#b3-result');
+  if(!status)return;
+  if(file.size>2_000_000){status.textContent='File too large for a safe inspection. No records were read or written.';return;}
+  try{
+    const result=previewKeepB3(await file.text());
+    status.textContent=result.reason+' ('+result.status+').';
+  }catch{status.textContent='Inspection failed. No original records were changed.'}
+});
 root.addEventListener('submit',event=>{
  if(event.target.id!=='settings-form')return;
  event.preventDefault();const form=event.target;const data=new FormData(form);
