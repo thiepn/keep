@@ -1,0 +1,12 @@
+{
+  "name": "keep",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "npm run test && npm run build"
+  },
+  "description": "Local-first KEEP shell with source-safe Faith & Discipline workflows"
+}
