@@ -3,6 +3,7 @@ import {
   newFocusState,tickFocus,pauseFocus,recordInterruption,formatClock,STORAGE_KEY
 } from './discipline.js';
 import {previewKeepB3} from './compat/keepB3Preview.js';
+import {parseOwnerRef,sourceLanding} from './compat/ownerResourceRefs.js';
 
 const root=document.getElementById('main');
 const buttons=[...document.querySelectorAll('[data-page]')];
@@ -59,6 +60,15 @@ function render() {
     <p>KEEP's earlier B3 knowledge source has not been imported into this new repository. No vault records have been migrated or recreated.</p>
     <section class="panel"><h2>Continue in native Hub Knowledge</h2><p>Hub has its own original note IDs, WikiLinks and linked tasks. Those are not copies of KEEP B3.</p>
     ${ownerLink('https://thiepn.dev/home/knowledge/','Open Hub Knowledge')}</section>
+    <section class="panel"><h2>Original B3 resource references</h2>
+      <p>Resolve a canonical <code>thiepn://</code> owner pointer without fetching, migrating or granting access to the underlying record.</p>
+      <form id="owner-ref-form">
+        <label for="owner-ref-input">Owner URI</label><input id="owner-ref-input" name="uri" autocomplete="off" placeholder="thiepn://keep/knowledge/note/...?...">
+        <button type="submit">Inspect owner</button>
+      </form>
+      <p id="owner-ref-result" role="status"></p>
+      <div id="owner-ref-links"></div>
+    </section>
     <section class="panel"><h2>Inspect a KEEP B3 archive safely</h2>
       <p>This is a read-only format check, not an importer. The original KEEP B3 schema and encryption engine are not available in this repository.</p>
       <label for="b3-preview-file">Choose local B3 archive or manifest</label>
@@ -113,6 +123,20 @@ root.addEventListener('change',async event=>{
     const result=previewKeepB3(await file.text());
     status.textContent=result.reason+' ('+result.status+').';
   }catch{status.textContent='Inspection failed. No original records were changed.'}
+});
+root.addEventListener('submit',event=>{
+ if(event.target.id!=='owner-ref-form')return;
+ event.preventDefault();
+ const text=String(new FormData(event.target).get('uri')||'');
+ const ref=parseOwnerRef(text),status=root.querySelector('#owner-ref-result'),links=root.querySelector('#owner-ref-links');
+ if(!status||!links)return;
+ links.replaceChildren();
+ if(!ref){status.textContent='Unrecognized or noncanonical owner URI. No data was accessed.';return;}
+ status.textContent=ref.source+' · '+ref.kind+' · original source ID: '+ref.id+'. This reference does not authorize access.';
+ const home=sourceLanding(ref);
+ if(home){
+   const a=document.createElement('a');a.href=home;a.textContent='Open original '+ref.source+' home (no private identifier transmitted)';a.rel='noopener noreferrer';a.target='_blank';links.append(a);
+ }
 });
 root.addEventListener('submit',event=>{
  if(event.target.id!=='settings-form')return;
