@@ -114,6 +114,7 @@ import {
   CommandPaletteModal,
   CommandExecutionContext,
   dailyNotesService,
+  isDailyNote,
   DailyNotesSettings,
   QuickCaptureModal,
   QuickCapturePayload,
@@ -4735,7 +4736,7 @@ export default function App() {
 
     // Award Gamification XP for creating note
     gamificationEngine.recordNoteCreated(newNote.title);
-    if (newNote.isDailyNote) {
+    if (isDailyNote(newNote, dailyNotesService.getSettings())) {
       gamificationEngine.recordDailyNoteWritten();
     }
 
@@ -4819,7 +4820,7 @@ export default function App() {
     if (currLinks > prevLinks) {
       gamificationEngine.recordLinkCreated();
     }
-    if (noteToSave.isDailyNote && !previousNote?.isDailyNote) {
+    if (isDailyNote(noteToSave, dailyNotesService.getSettings()) && !(previousNote && isDailyNote(previousNote, dailyNotesService.getSettings()))) {
       gamificationEngine.recordDailyNoteWritten();
     }
 

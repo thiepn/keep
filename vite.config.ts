@@ -1,6 +1,8 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const sourceRoot = path.dirname(fileURLToPath(import.meta.url));
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
@@ -9,7 +11,7 @@ export default defineConfig(() => {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': sourceRoot,
       },
     },
     server: {
