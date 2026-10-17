@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>KeepNotes</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to capture photos and scan documents into your private PKM vault.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to record voice notes and audio memos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to select images and attachments for your notes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Used for optional convenience biometric unlock of your PKM vault.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.keepnotes.pkm</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>pkm</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

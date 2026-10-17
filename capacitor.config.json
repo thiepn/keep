@@ -1,0 +1,33 @@
+{
+  "appId": "com.keepnotes.pkm",
+  "appName": "KeepNotes PKM",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "pkm",
+    "hostname": "localhost"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1000,
+      "launchAutoHide": true,
+      "backgroundColor": "#18181b",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "dark",
+      "resizeOnFullScreen": true
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_notification",
+      "iconColor": "#6366f1",
+      "sound": "beep.wav"
+    },
+    "App": {
+      "urlSchemes": ["pkm"]
+    }
+  }
+}
