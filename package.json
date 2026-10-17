@@ -12,7 +12,9 @@
     "test": "tsx src/pkm/__tests__/runTests.ts && npm run test:b1b && npm run test:b2 && npm run test:b3",
     "test:b1b": "node scripts/check-keep-b1b.cjs",
     "test:b2": "node scripts/check-keep-b2.cjs",
-    "test:b3": "node scripts/check-keep-b3.cjs"
+    "test:b3": "node scripts/check-keep-b3.cjs",
+    "test:hub-embed": "node scripts/check-hub-embed.cjs",
+    "build:hub-embed": "vite build --config hub-embed/vite.config.ts"
   },
   "dependencies": {
     "@isomorphic-git/lightning-fs": "^4.7.0",
