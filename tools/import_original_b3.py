@@ -10,7 +10,7 @@ import subprocess
 import sys
 import zipfile
 
-EXPECTED_SHA = '9e1db9ee06efa9d6e7bf92c1acd8e03317659071ef7b8046938f0b47e0986ca9'
+EXPECTED_SHA = 'ce0c31eda19dd1d7065cd23dba5521b4cea9fb110293fb8d59e84ec5623a7e1e'
 EXPECTED_MEMBERS = 1348
 BRANCH = 'feature/fd1-faith-discipline-shell'
 REQUIRED = {

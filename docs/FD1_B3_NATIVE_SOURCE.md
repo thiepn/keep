@@ -4,8 +4,8 @@
 - Original, owned source: `KEEP_B3_updated_source.zip`, 1,344 archive members.
 - Original codebase: React/Vite, `src/App.tsx`, `src/pkm/workspace/WorkspaceContainer.tsx`, `src/services/storage.ts`, B3 projects/study desk, Markdown task handling, Folio/Vault typed pointer contracts, encrypted vault and backup/recovery engines.
 - Its `KeepNotesDB` and P50 tracking namespaces remain authoritative; **do not migrate data to the interim FD1 `localStorage` preference shell**.
-- Native B3 FD1 source artifact prepared separately with SHA-256:
-  `9e1db9ee06efa9d6e7bf92c1acd8e03317659071ef7b8046938f0b47e0986ca9` (4,026,361 bytes).
+- Native B3 FD1 v2 source artifact prepared separately with SHA-256:
+  `ce0c31eda19dd1d7065cd23dba5521b4cea9fb110293fb8d59e84ec5623a7e1e` (4,017,612 bytes).
   It contains the full B3 source plus an original-P50-backed Faith & Discipline Today panel, weekly practice view and Pomodoro/calendar handoffs.
 
 ## Tested on the native B3 source artifact
@@ -27,3 +27,10 @@ The PR now ports the original B3 `thiepn://` owner-ref URI contract and exposes 
 5. Set repository default to `main` (its first branch was an isolated feature branch because the repo was empty).
 
 No deployment, migrations, production writes, credentials or costs were authorized for FD1.
+
+## Original B3 FD1 v2 local acceptance
+- Explicit P50-backed seven-day native review with earlier/next week navigation; no invented activity counts.
+- 15 native FD1 source tests PASS; existing B3 48 and B2 33 PASS.
+- 1,261 JS/TS/TSX sources parsed; 4,683 relative import dependencies resolved without missing files.
+- 1,348-member reviewed archive: `KEEP_B3_FD1_native_source_v2.zip`, SHA-256 `ce0c31eda19dd1d7065cd23dba5521b4cea9fb110293fb8d59e84ec5623a7e1e`.
+- `python tools/import_original_b3.py /path/KEEP_B3_FD1_native_source_v2.zip` for read-only dry run; repeat with `--apply` to stage actual source in a clean checkout on the SAME draft branch. A successful local import was tested in an isolated Git fixture. Do not merge or deploy before real exact-head build and recovery qualification.
