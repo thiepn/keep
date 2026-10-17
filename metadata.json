@@ -1,0 +1,11 @@
+{
+  "name": "KEEP",
+  "description": "Local-first personal knowledge and planning workspace. Source ownership and external integration readiness remain subject to verification.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

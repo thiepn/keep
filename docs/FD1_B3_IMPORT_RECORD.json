@@ -1,0 +1,35 @@
+{
+  "schema": "thiepn.keep.original-b3-import.v1",
+  "archive": "KEEP_B3_FD1_native_source_v2.zip",
+  "archiveSha256": "ce0c31eda19dd1d7065cd23dba5521b4cea9fb110293fb8d59e84ec5623a7e1e",
+  "originalArchiveMembers": 1348,
+  "originalSourceBytes": 15172475,
+  "process": "Reviewed importer dry-run + local apply, then single Git tree upload; nine provisional shell files replaced without migration",
+  "checks": {
+    "sourceB1b": 22,
+    "sourceB2": 33,
+    "sourceB3": 48,
+    "fd1Native": 15,
+    "typescriptTsxSyntax": 1261,
+    "typescriptTsxSyntaxErrors": 0,
+    "bunLockfileJsonc": "PASS",
+    "bundledPackageCount": 587
+  },
+  "preservation": {
+    "reactApp": "src/App.tsx",
+    "originalWriter": "src/services/storage.ts",
+    "vaultEncryption": "src/pkm/encryption/vaultEncryptionService.ts",
+    "kdf": "src/pkm/encryption/kdf.ts",
+    "aesGcm": "src/pkm/encryption/aesGcm.ts",
+    "lock": "bun.lock"
+  },
+  "releaseGates": {
+    "npmInstall": "NOT_TESTED_NETWORK_UNAVAILABLE",
+    "viteBuild": "NOT_TESTED_MISSING_DEPENDENCIES",
+    "browser": "NOT_TESTED",
+    "encryptedVaultUnlockRecovery": "NOT_TESTED"
+  },
+  "dataMigration": false,
+  "deploy": false,
+  "credentials": false
+}
